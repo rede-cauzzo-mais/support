@@ -22,7 +22,10 @@
 	"autoload": {
 		"files": [
 			"src/helpers.php"
-		]
+		],
+		"psr-4": {
+			"RedeCauzzoMais\\Support\\": "src/"
+		}
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true
