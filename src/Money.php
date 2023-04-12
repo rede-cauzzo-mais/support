@@ -1,5 +1,7 @@
 <?php
 
+namespace RedeCauzzoMais\Support;
+
 class Money
 {
 	public static function format( $value, $currency = 'BRL' ): string
