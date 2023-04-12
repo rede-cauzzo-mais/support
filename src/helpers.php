@@ -10,6 +10,6 @@
 if ( !function_exists( 'helperTeste' ) ) {
 	function helperTeste(): string
 	{
-		return 'helperTeste';
+		return 'você está usando o helper';
 	}
 }
