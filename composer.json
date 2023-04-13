@@ -1,6 +1,7 @@
 {
 	"name": "rede-cauzzo-mais/support",
 	"description": "Gestor support.",
+	"type": "library",
 	"license": "MIT",
 	"authors": [
 		{
