@@ -1,4 +1,11 @@
-## v0.1.2 (2023-04-14)
+## v0.1.5 (2023-04-14)
+
+### New features
+- Class Filter
+
+-------------------
+
+## v0.1.4 (2023-04-14)
 
 ### New features
 - Update README.md
