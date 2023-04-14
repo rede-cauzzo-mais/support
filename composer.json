@@ -1,6 +1,6 @@
 {
 	"name": "rede-cauzzo-mais/support",
-	"description": "Gestor support.",
+	"description": "Rede Cauzzo Mais support package, contains helpers and other useful things.",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
@@ -12,18 +12,18 @@
 	"require": {
 		"php": "^8.0.2",
 		"ext-json": "*",
-		"ext-mbstring": "*"
+		"ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.0|^10.0"
 	},
 	"require-dev": {
-		"guzzlehttp/guzzle": "^7.2",
-		"laravel/framework": "^9.19"
 	},
 	"autoload": {
 		"files": [
-			"src/helpers.php"
+            "src/Support/helpers.php"
 		],
 		"psr-4": {
-			"RedeCauzzoMais\\Support\\": "src/"
+			"RedeCauzzoMais\\": "src/"
 		}
 	},
 	"minimum-stability": "stable",

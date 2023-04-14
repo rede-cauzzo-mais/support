@@ -153,8 +153,8 @@ class Cronos
     {
         $separatedData = explode( ':', $hours );
 
-        $minutesInHours    = $separatedData[0] * 60;
-        $minutesInDecimals = $separatedData[1];
+        $minutesInHours    = (int) $separatedData[0] * 60;
+        $minutesInDecimals = (int) $separatedData[1];
 
         return $minutesInHours + $minutesInDecimals;
     }
