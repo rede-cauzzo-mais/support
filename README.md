@@ -14,7 +14,7 @@ Package designed to meet the needs of __Rede Cauzzo Mais__ projects, in this lib
 ## Install
 To install, just run:
 
-    composer require binary-cats/sanitizer
+    composer require rede-cauzzo-mais/support
 
 ### Support Cronos
 | Function            | Description |
