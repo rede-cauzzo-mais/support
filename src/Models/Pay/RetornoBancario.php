@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\RetornoBancario
+ * RedeCauzzoMais\Models\Pay\RetornoBancario
  *
  * @property int    $id_retorno_bancario
  * @property int    $id_pessoa_juridica
@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|RetornoBancario whereRetorno( $value )
  * @method static Builder|RetornoBancario whereServico( $value )
  * @method static Builder|RetornoBancario whereUpdated( $value )
+ * @mixin \Eloquent
  */
 class RetornoBancario extends Model
 {
