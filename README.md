@@ -16,46 +16,18 @@ To install, just run:
 
     composer require rede-cauzzo-mais/support
 
-### Support Cronos
-| Function            | Description |
-|:--------------------|:------------|
-| brMonth             |             |
-| brDayOfWeek         |             |
-| brMonthByYear       |             |
-| sTime               |             |
-| brToday             |             |
-| sDateTime           |             |
-| sDate               |             |
-| timeElapsedSinceNow |             |
-| hoursToMinutes      |             |
-| minutesToHours      |             |
-| getArrayCalendar    |             |
-| rDate               |             |
-| age                 |             |
-| isDate              |             |
+#### Telegram env
+    TELEGRAM_ENDPOINT=
+    TELEGRAM_TOKEN=
+    TELEGRAM_CHAT_ID=
 
-### Support Money
-| Function        | Description |
-|:----------------|:------------|
-| format          |             |
-| unformat        |             |
-| toPercent       |             |
-| toString        |             |
-| formatPercent   |             |
-| toGrowthPercent |             |
+#### Telegram config
+    return [
+        'telegram'    => [
+        'endpoint' => env( 'TELEGRAM_ENDPOINT' ),
+        'token'    => env( 'TELEGRAM_TOKEN' ),
+        'chat_id'  => env( 'TELEGRAM_CHAT_ID' )
+        ]
+    ];
 
-### Support Utils
-| Function     | Description |
-|:-------------|:------------|
-| assetCache   |             |
-| mask         |             |
-| abreviaNome  |             |
-| dateToFormat |             |
-| ifAttr       |             |
-| option       |             |
-| cast         |             |
-| money        |             |
-| substr       |             |
-| getMesBr     |             |
-| getHoje      |             |
-| toThousand   |             |
+#### 
