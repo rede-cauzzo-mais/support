@@ -10,11 +10,11 @@ class Telegram
 
     public static function sendMessage( string $message, ?int $chatId = null ): bool
     {
-        $endpoint = config( 'local.telegram.endpoint' );
-        $token    = config( 'local.telegram.token' );
+        $endpoint = config( 'cauzzo.telegram.endpoint' );
+        $token    = config( 'cauzzo.telegram.token' );
 
         if ( empty( $chatId ) ) {
-            $chatId = config( 'local.telegram.chat_id' );
+            $chatId = config( 'cauzzo.telegram.chat_id' );
         }
 
         $title   = config( 'app.name' );
