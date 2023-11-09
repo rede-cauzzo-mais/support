@@ -9,13 +9,11 @@ class CauzzoServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        /*
-          $source = realpath( realpath( __DIR__ . '/../../config/cauzzo.php' ) );
+        $source = realpath( realpath( __DIR__ . '/../../config/cauzzo.php' ) );
 
-          $this->publishes( [$source => config_path( 'cauzzo.php' )] );
+        $this->publishes( [$source => config_path( 'cauzzo.php' )], 'cauzzo' );
 
-          $this->mergeConfigFrom( $source, 'cauzzo' );
-        */
+        $this->mergeConfigFrom( $source, 'cauzzo' );
     }
 
     public function register(): void

@@ -16,7 +16,7 @@ To install, just run:
 
     composer require rede-cauzzo-mais/support
 
-    php artisan vendor:publish --tag=config
+    php artisan vendor:publish --tag=cauzzo
 
 Add the following class to the providers array in config/app.php:
 Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
