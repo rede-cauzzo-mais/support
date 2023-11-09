@@ -19,7 +19,7 @@ To install, just run:
     php artisan vendor:publish --tag=cauzzo
 
 Add the following class to the providers array in config/app.php:
-Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+RedeCauzzoMais\CauzzoServiceProvider::class,
 
 #### Telegram env
     TELEGRAM_ENDPOINT=
