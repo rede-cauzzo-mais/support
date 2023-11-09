@@ -1,31 +1,44 @@
 {
-	"name": "rede-cauzzo-mais/support",
-	"description": "Rede Cauzzo Mais support package, contains helpers and other useful things.",
-	"type": "library",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Bruno Almeida",
-			"email": "brunob1990@gmail.com"
-		}
-	],
-	"require": {
-		"php": "^8.2.0",
-		"ext-json": "*",
-		"ext-mbstring": "*",
+    "name": "rede-cauzzo-mais/support",
+    "description": "Rede Cauzzo Mais support package, contains helpers and other useful things.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruno Almeida",
+            "email": "brunob1990@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2.0",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0|^10.0"
-	},
-	"require-dev": {
-	},
-	"autoload": {
-		"files": [
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "files": [
             "src/Support/helpers.php"
-		],
-		"psr-4": {
-			"RedeCauzzoMais\\": "src/"
-		}
-	},
-	"minimum-stability": "stable",
-	"prefer-stable": true
+        ],
+        "psr-4": {
+            "RedeCauzzoMais\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {
+            },
+            "providers": [
+                "RedeCauzzoMais\\CauzzoServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

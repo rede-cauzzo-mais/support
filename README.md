@@ -16,18 +16,22 @@ To install, just run:
 
     composer require rede-cauzzo-mais/support
 
+    php artisan vendor:publish --tag=config
+
+Add the following class to the providers array in config/app.php:
+Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
 #### Telegram env
     TELEGRAM_ENDPOINT=
     TELEGRAM_TOKEN=
     TELEGRAM_CHAT_ID=
 
-#### Telegram config
-    return [
-        'telegram'    => [
-        'endpoint' => env( 'TELEGRAM_ENDPOINT' ),
-        'token'    => env( 'TELEGRAM_TOKEN' ),
-        'chat_id'  => env( 'TELEGRAM_CHAT_ID' )
-        ]
-    ];
+#### SICREDI BOLETO env
+    SICREDI_BOLETO_XAPIKEY=
+    SICREDI_BOLETO_USERNAME=
+    SICREDI_BOLETO_PASSWORD=
+    SICREDI_BOLETO_COOPERATIVA=
+    SICREDI_BOLETO_POSTO=
+    SICREDI_BOLETO_BENEFICIARIO=
 
-#### 
+####
