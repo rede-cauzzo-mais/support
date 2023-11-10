@@ -136,7 +136,7 @@ class BoletoSicredi
             'codigoBeneficiario' => $this->config['beneficiario'],
         ] )->withBody( '{}', 'application/json' )->withToken( $this->getAccessToken() )->patch( $endpoint );
 
-        if ( $response->status() <> 202 ) {
+        if ( !in_array( $response->status(), [202, 404] ) ) {
             TelegramJob::dispatch( implode( PHP_EOL, [
                 'Code: ' . $response->status(),
                 'Nosso Numero: ' . $nossoNumero,
