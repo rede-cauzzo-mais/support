@@ -47,8 +47,6 @@ class BoletoSicredi
 
     private function authToken()
     {
-        echo var_export( __FUNCTION__, true );
-
         $token = Http::withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
@@ -67,8 +65,6 @@ class BoletoSicredi
 
     private function authRefreshToken( $refreshToken )
     {
-        echo var_export( __FUNCTION__, true );
-
         $token = Http::withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
@@ -237,4 +233,3 @@ class BoletoSicredi
         return $response->json();
     }
 }
-
