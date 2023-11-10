@@ -50,7 +50,7 @@ class BoletoSicredi
     {
         $token = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
         ] )->asForm()->post( $this->endpoint( 'auth' ), [
@@ -70,7 +70,7 @@ class BoletoSicredi
     {
         $token = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
         ] )->asForm()->post( $this->endpoint( 'auth' ), [
@@ -111,7 +111,7 @@ class BoletoSicredi
 
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key'   => $this->config['x-api-key'],
             'cooperativa' => $this->config['cooperativa'],
             'posto'       => $this->config['posto']
@@ -138,7 +138,7 @@ class BoletoSicredi
 
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
@@ -169,7 +169,7 @@ class BoletoSicredi
 
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key'   => $this->config['x-api-key'],
             'cooperativa' => $this->config['cooperativa'],
             'posto'       => $this->config['posto']
@@ -202,7 +202,7 @@ class BoletoSicredi
 
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
@@ -229,7 +229,7 @@ class BoletoSicredi
         $endpoint = $this->endpoint( 'registro' );
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
-        } )->withHeaders( [
+        }, false )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
