@@ -2,6 +2,7 @@
 
 namespace RedeCauzzoMais\Api;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -47,7 +48,9 @@ class BoletoSicredi
 
     private function authToken()
     {
-        $token = Http::withHeaders( [
+        $token = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
         ] )->asForm()->post( $this->endpoint( 'auth' ), [
@@ -65,7 +68,9 @@ class BoletoSicredi
 
     private function authRefreshToken( $refreshToken )
     {
-        $token = Http::withHeaders( [
+        $token = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key' => $this->config['x-api-key'],
             'context'   => 'COBRANCA'
         ] )->asForm()->post( $this->endpoint( 'auth' ), [
@@ -104,7 +109,9 @@ class BoletoSicredi
             'nossoNumero'        => $nossoNumero
         ] );
 
-        $response = Http::withHeaders( [
+        $response = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key'   => $this->config['x-api-key'],
             'cooperativa' => $this->config['cooperativa'],
             'posto'       => $this->config['posto']
@@ -129,7 +136,9 @@ class BoletoSicredi
             'nossoNumero' => $nossoNumero
         ] );
 
-        $response = Http::withHeaders( [
+        $response = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
@@ -158,7 +167,9 @@ class BoletoSicredi
             'pagina'                   => $pagina
         ] );
 
-        $response = Http::withHeaders( [
+        $response = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key'   => $this->config['x-api-key'],
             'cooperativa' => $this->config['cooperativa'],
             'posto'       => $this->config['posto']
@@ -189,7 +200,9 @@ class BoletoSicredi
             'nossoNumero' => $nossoNumero
         ] );
 
-        $response = Http::withHeaders( [
+        $response = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
@@ -214,7 +227,9 @@ class BoletoSicredi
     public function registro( array $boleto ): false|array
     {
         $endpoint = $this->endpoint( 'registro' );
-        $response = Http::withHeaders( [
+        $response = Http::retry( 3, 250, function ( $exception ) {
+            return $exception instanceof ConnectionException;
+        } )->withHeaders( [
             'x-api-key'          => $this->config['x-api-key'],
             'cooperativa'        => $this->config['cooperativa'],
             'posto'              => $this->config['posto'],
