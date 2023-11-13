@@ -6,7 +6,6 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use RedeCauzzoMais\Jobs\TelegramJob;
 
 class BoletoSicredi
 {
@@ -102,6 +101,9 @@ class BoletoSicredi
         return $this->authToken();
     }
 
+    /**
+     * @throws \RedeCauzzoMais\Api\ApiException
+     */
     public function consulta( int $nossoNumero ): false|array
     {
         $endpoint = $this->endpoint( 'consulta', [
@@ -117,19 +119,18 @@ class BoletoSicredi
             'posto'       => $this->config['posto']
         ] )->withToken( $this->getAccessToken() )->get( $endpoint );
 
-        if ( $response->status() <> 200 ) {
-            TelegramJob::dispatch( implode( PHP_EOL, [
-                'Code: ' . $response->status(),
-                'Nosso Numero: ' . $nossoNumero,
-                var_export( $response->json(), true )
-            ] ) );
+        $result = $response->json();
 
-            return false;
+        if ( $response->status() <> 200 ) {
+            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
         }
 
-        return $response->json();
+        return $result;
     }
 
+    /**
+     * @throws \RedeCauzzoMais\Api\ApiException
+     */
     public function pedidoBaixa( int $nossoNumero ): false|array
     {
         $endpoint = $this->endpoint( 'baixa', [
@@ -145,19 +146,18 @@ class BoletoSicredi
             'codigoBeneficiario' => $this->config['beneficiario'],
         ] )->withBody( '{}', 'application/json' )->withToken( $this->getAccessToken() )->patch( $endpoint );
 
-        if ( !in_array( $response->status(), [202, 404] ) ) {
-            TelegramJob::dispatch( implode( PHP_EOL, [
-                'Code: ' . $response->status(),
-                'Nosso Numero: ' . $nossoNumero,
-                var_export( $response->json(), true )
-            ] ) );
+        $result = $response->json();
 
-            return false;
+        if ( $response->status() <> 202 ) {
+            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
         }
 
-        return $response->json();
+        return $result;
     }
 
+    /**
+     * @throws \RedeCauzzoMais\Api\ApiException
+     */
     public function liquidados( Carbon $dia, ?string $cpf = null, int $pagina = 0 ): false|array
     {
         $endpoint = $this->endpoint( 'liquidados', [
@@ -175,17 +175,11 @@ class BoletoSicredi
             'posto'       => $this->config['posto']
         ] )->withToken( $this->getAccessToken() )->get( $endpoint );
 
-        if ( $response->status() <> 200 ) {
-            TelegramJob::dispatch( implode( PHP_EOL, [
-                'Code: ' . $response->status(),
-                'CPF: ' . $cpf,
-                var_export( $response->json(), true )
-            ] ) );
-
-            return false;
-        }
-
         $pagos = $response->json();
+
+        if ( $response->status() <> 200 ) {
+            throw new ApiException( $pagos->message ?? 'Erro inesperado', $pagos->code, $pagos );
+        }
 
         if ( $pagos['hasNext'] ) {
             $pagos['items'] = array_merge( $pagos['items'], $this->liquidados( $dia, $cpf, $pagina + 1 ) );
@@ -194,6 +188,9 @@ class BoletoSicredi
         return $pagos['items'];
     }
 
+    /**
+     * @throws \RedeCauzzoMais\Api\ApiException
+     */
     public function novoVencimento( int $nossoNumero, Carbon $dia ): false|array
     {
         $endpoint = $this->endpoint( 'vencimento', [
@@ -211,22 +208,22 @@ class BoletoSicredi
             'dataVencimento' => $dia->format( 'Y-m-d' )
         ] );
 
-        if ( $response->status() <> 202 ) {
-            TelegramJob::dispatch( implode( PHP_EOL, [
-                'Code: ' . $response->status(),
-                'Nosso Numero: ' . $nossoNumero,
-                var_export( $response->json(), true )
-            ] ) );
+        $result = $response->json();
 
-            return false;
+        if ( $response->status() <> 202 ) {
+            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
         }
 
-        return $response->json();
+        return $result;
     }
 
+    /**
+     * @throws \RedeCauzzoMais\Api\ApiException
+     */
     public function registro( array $boleto ): false|array
     {
         $endpoint = $this->endpoint( 'registro' );
+
         $response = Http::retry( 3, 250, function ( $exception ) {
             return $exception instanceof ConnectionException;
         }, false )->withHeaders( [
@@ -236,15 +233,12 @@ class BoletoSicredi
             'codigoBeneficiario' => $this->config['beneficiario'],
         ] )->withToken( $this->getAccessToken() )->asJson()->post( $endpoint, $boleto );
 
-        if ( $response->status() <> 201 ) {
-            TelegramJob::dispatch( implode( PHP_EOL, [
-                'Code: ' . $response->status(),
-                var_export( $response->json(), true )
-            ] ) );
+        $result = $response->json();
 
-            return false;
+        if ( $response->status() <> 201 ) {
+            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
         }
 
-        return $response->json();
+        return $result;
     }
 }
