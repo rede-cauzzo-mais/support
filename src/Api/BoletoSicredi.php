@@ -122,7 +122,7 @@ class BoletoSicredi
         $result = $response->json();
 
         if ( $response->status() <> 200 ) {
-            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
+            throw new ApiException( $result?->message ?? 'Erro inesperado', $response->status(), $result );
         }
 
         return $result;
@@ -149,7 +149,7 @@ class BoletoSicredi
         $result = $response->json();
 
         if ( $response->status() <> 202 ) {
-            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
+            throw new ApiException( $result?->message ?? 'Erro inesperado', $response->status(), $result );
         }
 
         return $result;
@@ -211,7 +211,7 @@ class BoletoSicredi
         $result = $response->json();
 
         if ( $response->status() <> 202 ) {
-            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
+            throw new ApiException( $result?->message ?? 'Erro inesperado', $response->status(), $result );
         }
 
         return $result;
@@ -236,7 +236,7 @@ class BoletoSicredi
         $result = $response->json();
 
         if ( $response->status() <> 201 ) {
-            throw new ApiException( $result->message ?? 'Erro inesperado', $result->code, $result );
+            throw new ApiException( $result?->message ?? 'Erro inesperado', $response->status(), $result );
         }
 
         return $result;
