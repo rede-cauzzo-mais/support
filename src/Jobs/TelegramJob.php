@@ -13,7 +13,7 @@ class TelegramJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct( private string $message, private ?int $chatId = null )
+    public function __construct( private readonly string $message, private readonly string|int|null $chatId = null )
     {
     }
 
