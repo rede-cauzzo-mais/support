@@ -1,9 +1,10 @@
 <?php
 return [
     'telegram' => [
-        'endpoint' => env( 'TELEGRAM_ENDPOINT' ),
-        'token'    => env( 'TELEGRAM_TOKEN' ),
-        'chat_id'  => env( 'TELEGRAM_CHAT_ID' )
+        'endpoint'   => env( 'TELEGRAM_ENDPOINT' ),
+        'token'      => env( 'TELEGRAM_TOKEN' ),
+        'chat_debug' => env( 'TELEGRAM_CHAT_DEBUG' ),
+        'chat_alert' => env( 'TELEGRAM_CHAT_ALERT' ),
     ],
     'sicredi'  => [
         'boleto' => [
