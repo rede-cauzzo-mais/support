@@ -16,10 +16,10 @@ class Telegram
         $endpoint = config( 'cauzzo.telegram.endpoint' );
         $token    = config( 'cauzzo.telegram.token' );
 
-        if ( is_null( $chatId ) or $chatId == self::CHAT_DEBUG ) {
-            $chatId = config( 'cauzzo.telegram.chat_debug' );
-        } elseif ( $chatId == self::CHAT_ALERT ) {
+        if ( is_null( $chatId ) or $chatId == self::CHAT_ALERT ) {
             $chatId = config( 'cauzzo.telegram.chat_alert' );
+        } elseif ( $chatId == self::CHAT_DEBUG ) {
+            $chatId = config( 'cauzzo.telegram.chat_debug' );
         }
 
         $title   = config( 'app.name' );
