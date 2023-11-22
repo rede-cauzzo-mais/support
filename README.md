@@ -24,7 +24,8 @@ RedeCauzzoMais\CauzzoServiceProvider::class,
 #### Telegram env
     TELEGRAM_ENDPOINT=
     TELEGRAM_TOKEN=
-    TELEGRAM_CHAT_ID=
+    TELEGRAM_CHAT_DEBUG=
+    TELEGRAM_CHAT_ALERT=
 
 #### SICREDI BOLETO env
     SICREDI_BOLETO_XAPIKEY=
