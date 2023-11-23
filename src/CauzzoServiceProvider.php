@@ -4,6 +4,7 @@ namespace RedeCauzzoMais;
 
 use RedeCauzzoMais\Api\BoletoSicredi;
 use Illuminate\Support\ServiceProvider;
+use RedeCauzzoMais\Console\Boleto\Consultar as BoletoConsultar;
 
 class CauzzoServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,12 @@ class CauzzoServiceProvider extends ServiceProvider
         $this->publishes( [$source => config_path( 'cauzzo.php' )], 'cauzzo' );
 
         $this->mergeConfigFrom( $source, 'cauzzo' );
+
+        if ( $this->app->runningInConsole() ) {
+            $this->commands( [
+                BoletoConsultar::class,
+            ] );
+        }
     }
 
     public function register(): void
