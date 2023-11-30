@@ -27,7 +27,7 @@ RedeCauzzoMais\CauzzoServiceProvider::class,
     TELEGRAM_CHAT_DEBUG=
     TELEGRAM_CHAT_ALERT=
 
-#### SICREDI BOLETO env
+#### Sicredi boleto env
     SICREDI_BOLETO_XAPIKEY=
     SICREDI_BOLETO_USERNAME=
     SICREDI_BOLETO_PASSWORD=
@@ -35,4 +35,16 @@ RedeCauzzoMais\CauzzoServiceProvider::class,
     SICREDI_BOLETO_POSTO=
     SICREDI_BOLETO_BENEFICIARIO=
 
-####
+#### Log Cauzzo in DB
+Add file config/logging.php
+
+    'cauzzo' => [
+        'driver' => 'custom',
+        'via'    => \RedeCauzzoMais\Logger\DatabaseLogger::class,
+    ],
+.env
+
+    LOG_DB_CONNECTION=
+    LOG_DB_SYSTEM_NAME=
+    LOG_DB_DEFAULT_SIGLA=
+

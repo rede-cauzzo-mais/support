@@ -1,5 +1,10 @@
 <?php
 return [
+    'log'      => [
+        'connection'  => env( 'LOG_DB_CONNECTION' ),
+        'system-name' => env( 'LOG_DB_SYSTEM_NAME' ),
+        'sigla'       => env( 'LOG_DB_DEFAULT_SIGLA' )
+    ],
     'telegram' => [
         'endpoint'   => env( 'TELEGRAM_ENDPOINT' ),
         'token'      => env( 'TELEGRAM_TOKEN' ),
