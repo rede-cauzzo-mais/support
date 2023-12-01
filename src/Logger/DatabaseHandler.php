@@ -37,6 +37,9 @@ class DatabaseHandler extends AbstractProcessingHandler
             $record['context']['exception'] = (string) $exception;
         }
 
+        $message = preg_replace( '#<br\s*/?>#i', PHP_EOL, $record['message'] ?? '' );
+        $message = strip_tags( $message );
+
         ( new Log( [
             'id_user'    => auth()->id() ?? null,
             'name'       => auth()->user()->nome ?? null,
@@ -46,7 +49,7 @@ class DatabaseHandler extends AbstractProcessingHandler
             'request'    => Request::getMethod(),
             'level'      => $record['level'],
             'level_name' => $record['level_name'],
-            'message'    => $record['message'],
+            'message'    => $message,
             'context'    => json_encode( $record['context'] ),
             'ip'         => Request::ip(),
             'platform'   => Browser::platformName(),
