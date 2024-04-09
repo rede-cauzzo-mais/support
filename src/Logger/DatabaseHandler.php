@@ -29,8 +29,13 @@ class DatabaseHandler extends AbstractProcessingHandler
         $this->defaultSigla = $systemName;
     }
 
-    protected function write( array $record ): void
+    protected function write( $record ): void
     {
+        /* fix para atualização do monolog */
+        if ( !is_array( $record ) ) {
+            $record = $record->toArray();
+        }
+
         $exception = $record['context']['exception'] ?? null;
 
         if ( $exception instanceof Throwable ) {
