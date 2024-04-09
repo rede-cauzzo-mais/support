@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^8.2.0",
+        "ext-iconv": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.2",
