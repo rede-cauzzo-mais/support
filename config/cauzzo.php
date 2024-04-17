@@ -20,5 +20,11 @@ return [
             'posto'        => env( 'SICREDI_BOLETO_POSTO' ),
             'beneficiario' => env( 'SICREDI_BOLETO_BENEFICIARIO' ),
         ]
-    ]
+    ],
+    'trello'   => [
+        'key'   => env( 'TRELLO_KEY' ),
+        'token' => env( 'TRELLO_TOKEN' ),
+        'board' => env( 'TRELLO_BOARD' ),
+        'list'  => env( 'TRELLO_LIST' ),
+    ],
 ];
