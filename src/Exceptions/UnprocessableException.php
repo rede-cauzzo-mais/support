@@ -2,12 +2,9 @@
 
 namespace RedeCauzzoMais\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
-class UnprocessableException extends HttpException
+class UnprocessableException extends Exception
 {
-	public function __construct( string $message = '', ?\Throwable $previous = null, int $code = 0, array $headers = [] )
-	{
-		parent::__construct( 422, $message, $previous, $headers, $code );
-	}
+    protected $code = 422;
 }
