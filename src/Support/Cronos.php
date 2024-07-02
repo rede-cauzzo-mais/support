@@ -255,6 +255,50 @@ class Cronos
         }
     }
 
+    public static function getFullAge( $dt_nasc )
+	{
+		$age = self::getAge( $dt_nasc );
+
+		if ( $age >= 18 ) {
+			return $age . ' anos';
+		}
+
+		$now  = new DateTime;
+		$then = new DateTime( $dt_nasc );
+		$diff = (array) $now->diff( $then );
+
+		$string = [
+			'y' => 'ano',
+			'm' => 'mês',
+			'd' => 'dia',
+		];
+
+		foreach ( $string as $k => &$v ) {
+			if ( $diff[$k] ) {
+				if ( $v == 'mês' ) {
+					$v = $diff[$k] . ' ' . ( $diff[$k] > 1 ? 'meses' : $v );
+					continue;
+				}
+
+				$v = $diff[$k] . ' ' . $v . ( $diff[$k] > 1 ? 's' : '' );
+			} else {
+				unset( $string[$k] );
+			}
+		}
+
+		$string = array_values( $string );
+
+		if ( count( $string ) < 2 ) {
+			return implode( $string );
+		}
+
+		if ( count( $string ) == 2 ) {
+			return "$string[0] e $string[1]";
+		}
+
+		return "$string[0], $string[1] e $string[2]";
+	}
+
     public static function isDate( $date, $format = 'Y-m-d' )
     {
         $d = DateTime::createFromFormat( $format, $date );
