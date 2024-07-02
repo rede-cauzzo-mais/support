@@ -257,7 +257,7 @@ class Cronos
 
     public static function getFullAge( $dt_nasc )
 	{
-		$age = self::getAge( $dt_nasc );
+		$age = self::age( $dt_nasc );
 
 		if ( $age >= 18 ) {
 			return $age . ' anos';
