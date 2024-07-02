@@ -45,7 +45,7 @@ if ( !function_exists( 'age' ) ) {
 }
 
 if ( !function_exists( 'getFullAge' ) ) {
-    function age( $birthday, $today = null ): int|string
+    function getFullAge( $birthday, $today = null ): int|string
     {
         return Cronos::getFullAge( $birthday, $today );
     }
