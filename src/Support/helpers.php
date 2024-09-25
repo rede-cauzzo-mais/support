@@ -142,6 +142,27 @@ if ( !function_exists( 'abreviaNome' ) ) {
     }
 }
 
+if ( !function_exists( 'checked' ) ) {
+    function checked( $value1, $value2 )
+    {
+        return Utils::ifAttr( $value1, $value2, 'checked' );
+    }
+}
+
+if ( !function_exists( 'selected' ) ) {
+    function selected( $value1, $value2 )
+    {
+        return Utils::ifAttr( $value1, $value2, 'selected' );
+    }
+}
+
+if ( !function_exists( 'disabled' ) ) {
+    function disabled( $value1, $value2 )
+    {
+        return Utils::ifAttr( $value1, $value2, 'disabled' );
+    }
+}
+
 if ( !function_exists( 'option' ) ) {
     function option( $list, $key, $value, $selected = null ): string
     {
